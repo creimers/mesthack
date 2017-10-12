@@ -34,7 +34,7 @@ class App extends Component {
           />
         </div>
         <div style={mapStyles}>
-          <Map />
+          <Map sliderValue={this.state.sliderValue} />
           </div>
       </div>
     );
