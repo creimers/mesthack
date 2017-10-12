@@ -17,18 +17,21 @@ const mapStyles = {
 
 class App extends Component {
   state = {
-    sliderVal: 0
+    sliderValue: 0
   }
 
   onSliderChange = (val) => {
-    console.log(val)
+    this.setState({sliderValue: val})
   }
 
   render() {
     return (
       <div style={appStyles}>
         <div style={sidebarStyles}>
-          <Sidebar />
+          <Sidebar
+            sliderValue={this.state.sliderValue}
+            handleSliderChange={this.onSliderChange}
+          />
         </div>
         <div style={mapStyles}>
           <Map />
