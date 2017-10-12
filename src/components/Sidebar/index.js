@@ -19,15 +19,17 @@ export default class Sidebar extends Component {
   render() {
     return (
       <div style={wrappingStyles}>
-        <h2>💩</h2>
+        <h2 style={{textAlign: 'center', fontSize: '3em'}}>💩</h2>
         <div style={sliderStyle}>
           <input 
             type="range" 
             min="0" max="500" 
             value={this.props.sliderValue} 
             onChange={this.onSliderChange}
-            step="1"/>
-          <span>{this.props.sliderValue}</span>
+            step="1"
+            style={{flex: 3}}
+          />
+          <span style={{flex: 1, display: 'flex', justifyContent: 'flex-end'}}>{this.props.sliderValue}</span>
         </div>
 
       </div>
