@@ -12,13 +12,6 @@ const MapboxMap = ReactMapboxGl({
 });
 
 const calculateImpact = (manure, cell) => {
-  // o1 = ifelse(gs %in% 'zand',0.5,1.0)
-  // o2 = ifelse(crop %in% "gras",0.4,0.6)
-  // o3 = ifelse(pal >36,0.7,0.3)
-  // o4 = ifelse(morf %in% "hol",2,ifelse(morf %in% 'greppel',1,0.1))
- 
-  // score = pal * mest * o1*o2*o3*o4
-
   const prec = 1
   const { properties } = cell
 
@@ -27,7 +20,6 @@ const calculateImpact = (manure, cell) => {
   const pal = properties.be_pal > 36 ? 0.7 : 0.3
 
   let morf
-
   if (properties.p_vormcat === 'hol') {
     morf = 2
   } else if (properties.p_vormcat === 'greppel') {
@@ -59,8 +51,21 @@ const impactStops = [
 
 export default class Map extends Component {
 
+  state = {
+    center: [5.00715, 52.27266],
+    zoom: [14]
+  }
+
   handleOnClick = (fill) => {
     this.props.handleSetActiveCell(fill.features[0].properties)
+  }
+
+  updateCenter = (center) => {
+    this.setState({center: [center.lng, center.lat]})
+  }
+
+  updateZoom = (zoom) => {
+    this.setState({zoom: [zoom]})
   }
 
   render() {
@@ -69,8 +74,10 @@ export default class Map extends Component {
       <MapboxMap
         style="mapbox://styles/mapbox/streets-v8"
         containerStyle={{height: '100vh', width: '100%'}}
-        center={[4.9944, 52.2180]}
-        zoom={[14]}
+        center={this.state.center}
+        zoom={this.state.zoom}
+        onMoveEnd={(map, e) => this.updateCenter(map.transform._center)}
+        onZoomEnd={(map, e) => this.updateZoom(map.transform._zoom)}
       >
         <GeoJSONLayer
           data={data}
