@@ -4,7 +4,7 @@ import { data } from './data/parcelen.js'
 
 import CellDetails from './components/CellDetails'
 import Map from './components/Map'
-import Sliders from './components/Sidebar'
+import Sliders from './components/Slider'
 
 const appStyles = {
   display: 'flex'
@@ -59,9 +59,13 @@ class App extends Component {
     this.setState({[slider]: val})
   }
 
+  resetActiveCell = () => {
+    this.setState({activeCell: null})
+  }
+
   renderActiveCell = () => {
     if (this.state.activeCell) {
-      return <CellDetails cell={this.state.activeCell} />
+      return <CellDetails cell={this.state.activeCell} onClose={this.resetActiveCell}/>
     }
   }
 
@@ -83,7 +87,7 @@ class App extends Component {
               handleSliderChange={this.onSliderChange}
             />
           </div>
-          <div style={{flex: 1}}>
+          <div style={{flex: 1, display: 'flex'}}>
             {this.renderActiveCell()}
           </div>
         </div>

@@ -11,13 +11,15 @@ const labelStyle = {
 }
 
 const inputStyle = {
-  flex: 3
+  flex: 3,
 }
 
 const valueStyle = {
   flex: 1,
   display: 'flex',
-  justifyContent: 'flex-end'
+  justifyContent: 'flex-end',
+  height: '100px',
+  alignItems: 'center'
 }
 
 const InputRange = (props) => (
