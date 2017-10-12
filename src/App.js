@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 
+import CellDetails from './components/CellDetails'
 import Map from './components/Map'
-import Sidebar from './components/Sidebar'
+import Sliders from './components/Sidebar'
 
 const appStyles = {
   display: 'flex'
 }
 
 const sidebarStyles = {
-  flex: 1
+  flex: 1,
+  flexDirection: 'column',
+  display: 'flex'
 }
 
 const mapStyles = {
@@ -18,26 +21,46 @@ const mapStyles = {
 class App extends Component {
   state = {
     manureValue: 1,
-    precipitationValue: 1
+    precipitationValue: 1,
+    activeCell: null
   }
 
   onSliderChange = (slider, val) => {
     this.setState({[slider]: val})
   }
 
+  renderActiveCell = () => {
+    if (this.state.activeCell) {
+      console.log(this.state.activeCell)
+      return <CellDetails cell={this.state.activeCell} />
+    }
+  }
+
+  setActiveCell = (cell) => {
+    this.setState({activeCell: cell})
+  }
+
   render() {
     return (
       <div style={appStyles}>
         <div style={sidebarStyles}>
-          <Sidebar
-            manureValue={this.state.manureValue}
-            precipitationValue={this.state.precipitationValue}
-            sliderValue={this.state.manureValue}
-            handleSliderChange={this.onSliderChange}
-          />
+          <div style={{flex: 1}}>
+            <Sliders
+              manureValue={this.state.manureValue}
+              precipitationValue={this.state.precipitationValue}
+              sliderValue={this.state.manureValue}
+              handleSliderChange={this.onSliderChange}
+            />
+          </div>
+          <div style={{flex: 1}}>
+            {this.renderActiveCell()}
+          </div>
         </div>
         <div style={mapStyles}>
-          <Map sliderValue={this.state.manureValue} />
+          <Map
+            sliderValue={this.state.manureValue}
+            handleSetActiveCell={this.setActiveCell}
+          />
           </div>
       </div>
     );

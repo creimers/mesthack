@@ -60,7 +60,7 @@ const impactStops = [
 export default class Map extends Component {
 
   handleOnClick = (fill) => {
-    console.log(fill)
+    this.props.handleSetActiveCell(fill.features[0].properties)
   }
 
   render() {
