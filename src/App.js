@@ -31,7 +31,6 @@ class App extends Component {
 
   renderActiveCell = () => {
     if (this.state.activeCell) {
-      console.log(this.state.activeCell)
       return <CellDetails cell={this.state.activeCell} />
     }
   }
@@ -58,7 +57,8 @@ class App extends Component {
         </div>
         <div style={mapStyles}>
           <Map
-            sliderValue={this.state.manureValue}
+            manureValue={this.state.manureValue}
+            precipitationValue={this.state.precipitationValue}
             handleSetActiveCell={this.setActiveCell}
           />
           </div>

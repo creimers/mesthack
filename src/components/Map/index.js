@@ -11,8 +11,7 @@ const MapboxMap = ReactMapboxGl({
   interactive: true
 });
 
-const calculateImpact = (manure, cell) => {
-  const prec = 1
+const calculateImpact = (manure, prec, cell) => {
   const { properties } = cell
 
   const soil = properties.bt_klasse1 === 'KLEI' ?  1.0 : 0.5
@@ -20,7 +19,7 @@ const calculateImpact = (manure, cell) => {
   const pal = properties.be_pal > 36 ? 0.7 : 0.3
 
   let morf
-  if (properties.p_vormcat === 'hol') {
+  if (properties.p_vormcat === 'bol') {
     morf = 2
   } else if (properties.p_vormcat === 'greppel') {
     morf = 1
@@ -28,10 +27,17 @@ const calculateImpact = (manure, cell) => {
     morf = 0.1
   }
 
-  // cell.properties.impact = prec * manure * soil * crop * pal * morf
+  // cell.properties.impact = prec * manure * soil * crop * pal * morf / 18000 * 100
 
-  cell.properties.impact = Math.floor(Math.random() * 10) / 10
+  // cell.properties.impact = Math.floor(Math.random() * 10) / 10
+  cell.properties.impact = Math.floor(prec / 100 * 10) / 10
+  // console.log(cell.properties.impact)
   return cell
+}
+
+const calculateDataWithImpact = (manure, prec) => {
+  data.features = data.features.map((cell) => calculateImpact(manure, prec, cell))
+  return data
 }
 
 const impactStops = [
@@ -69,7 +75,13 @@ export default class Map extends Component {
   }
 
   render() {
-    data.features = data.features.map((cell) => calculateImpact(this.props.sliderValue, cell))
+    const dataWithImpact = calculateDataWithImpact(this.props.manureValue, this.props.precipitationValue)
+    //
+    // const features = data.features.map((cell) => calculateImpact(this.props.manureValue, this.props.precipitationValue, cell)) 
+    // data.features = features
+    // const impacts = data.features.map((cell) => cell.properties.impact)
+    // console.log(impacts)
+    // console.log('max', Math.max(...impacts))
     return (
       <MapboxMap
         style="mapbox://styles/mapbox/streets-v8"
@@ -80,7 +92,7 @@ export default class Map extends Component {
         onZoomEnd={(map, e) => this.updateZoom(map.transform._zoom)}
       >
         <GeoJSONLayer
-          data={data}
+          data={dataWithImpact}
           fillPaint={{'fill-color': {property: 'impact', stops: impactStops}}}
           fillOnClick={this.handleOnClick}
         >
