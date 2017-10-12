@@ -17,11 +17,12 @@ const mapStyles = {
 
 class App extends Component {
   state = {
-    sliderValue: 0
+    manureValue: 1,
+    precipitationValue: 1
   }
 
-  onSliderChange = (val) => {
-    this.setState({sliderValue: val})
+  onSliderChange = (slider, val) => {
+    this.setState({[slider]: val})
   }
 
   render() {
@@ -29,12 +30,14 @@ class App extends Component {
       <div style={appStyles}>
         <div style={sidebarStyles}>
           <Sidebar
-            sliderValue={this.state.sliderValue}
+            manureValue={this.state.manureValue}
+            precipitationValue={this.state.precipitationValue}
+            sliderValue={this.state.manureValue}
             handleSliderChange={this.onSliderChange}
           />
         </div>
         <div style={mapStyles}>
-          <Map sliderValue={this.state.sliderValue} />
+          <Map sliderValue={this.state.manureValue} />
           </div>
       </div>
     );
