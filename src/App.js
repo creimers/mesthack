@@ -3,11 +3,13 @@ import React, { Component } from 'react';
 import { data } from './data/parcelen.js'
 
 import CellDetails from './components/CellDetails'
+import Chart from './components/Chart'
 import Map from './components/Map'
 import Sliders from './components/Slider'
 
 const appStyles = {
-  display: 'flex'
+  display: 'flex',
+  height: '100vh'
 }
 
 const sidebarStyles = {
@@ -17,7 +19,9 @@ const sidebarStyles = {
 }
 
 const mapStyles = {
-  flex: 4
+  flex: 4,
+  display: 'flex',
+  flexDirection: 'column'
 }
 
 const calculateImpact = (manure, prec, cell) => {
@@ -92,13 +96,20 @@ class App extends Component {
           </div>
         </div>
         <div style={mapStyles}>
-          <Map
-            manureValue={this.state.manureValue}
-            precipitationValue={this.state.precipitationValue}
-            handleSetActiveCell={this.setActiveCell}
-            data={dataWithImpact}
-          />
+          <div style={{flex: 3}}>
+            <Map
+              manureValue={this.state.manureValue}
+              precipitationValue={this.state.precipitationValue}
+              handleSetActiveCell={this.setActiveCell}
+              data={dataWithImpact}
+            />
           </div>
+          <div style={{flex: 1}}>
+            <Chart
+              manureValue={this.state.manureValue}
+            />
+          </div>
+        </div>
       </div>
     );
   }

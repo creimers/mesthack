@@ -45,11 +45,10 @@ export default class Map extends Component {
   }
 
   render() {
-    console.log('render')
     return (
       <MapboxMap
         style="mapbox://styles/mapbox/streets-v8"
-        containerStyle={{height: '100vh', width: '100%'}}
+        containerStyle={{height: '100%', width: '100%'}}
         center={this.state.center}
         zoom={this.state.zoom}
         onMoveEnd={(map, e) => this.updateCenter(map.transform._center)}
