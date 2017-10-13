@@ -88,7 +88,7 @@ class App extends Component {
               handleSliderChange={this.onSliderChange}
             />
           </div>
-          <div style={{flex: this.state.activeCell ? 1 : 0, display: 'flex', transition: 'all 0.5s ease'}}>
+          <div style={{flex: this.state.activeCell ? 1 : 0, display: 'flex', transition: 'all 0.5s ease', overflow: 'hidden'}}>
             <CellDetails cell={this.state.activeCell || {}} onClose={this.resetActiveCell}/>
           </div>
         </div>

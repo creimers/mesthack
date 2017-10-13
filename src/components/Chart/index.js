@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Dimensions from 'react-dimensions'
 
-import { LineChart, Line, XAxis, YAxis } from 'recharts'
+import { LineChart, Line, XAxis, YAxis, Legend } from 'recharts'
 
 const calculateLines = (manure) => {
   const months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
@@ -30,7 +30,8 @@ const calculateLines = (manure) => {
 const wrappingStyles = {
   display: 'flex',
   alignItems: 'center',
-  height: '100%'
+  height: '100%',
+  flexDirection: 'column'
 }
 
 
@@ -44,18 +45,22 @@ class Chart extends Component {
     const data = calculateLines(this.props.manureValue)
     return (
       <div style={wrappingStyles}>
-        <LineChart
-          width={this.props.containerWidth}
-          height={200}
-          data={data}
-          margin={{top: 5, right: 30, left: 10, bottom: 5}}
-        >
-          <XAxis dataKey="month"/>
-          <YAxis/>
-          <Line type="monotone" dataKey="one" stroke="#8884d8" />
-          <Line type="monotone" dataKey="two" stroke="#82ca9d" />
-          <Line type="monotone" dataKey="three" stroke="#f00000" />
-        </LineChart>
+        <h3>Fosfaat gehalte in waterlichaam [mg/l]</h3>
+        <div style={{flex: 1}}>
+          <LineChart
+            width={this.props.containerWidth}
+            height={180}
+            data={data}
+            margin={{top: 5, right: 30, left: 10, bottom: 5}}
+          >
+            <XAxis dataKey="month"/>
+            <YAxis/>
+            <Legend />
+            <Line type="monotone" dataKey="one" name="Mais op Zand" stroke="#8884d8" />
+            <Line type="monotone" dataKey="two" name="Gras op Veen" stroke="#82ca9d" />
+            <Line type="monotone" dataKey="three" name="Gras op Klei" stroke="#f00000" />
+          </LineChart>
+        </div>
       </div>
     )
   }
