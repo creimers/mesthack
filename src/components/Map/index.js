@@ -9,21 +9,6 @@ const MapboxMap = ReactMapboxGl({
   interactive: true
 });
 
-
-const impactStops = [
-  [0.0, '#ffebee'],
-  [0.1, '#ffcdd2'],
-  [0.2, '#ef9a9a'],
-  [0.3, '#e57373'],
-  [0.4, '#ef5350'],
-  [0.5, '#f44336'],
-  [0.6, '#e53935'],
-  [0.7, '#d32f2f'],
-  [0.8, '#c62828'],
-  [0.9, '#b71c1c'],
-  [1.0, '#d50000']
-]
-
 const impactStopsOrange = [
   [0.0, '#FFF3E0'],
   [0.1, '#FFE0B2'],
@@ -70,6 +55,7 @@ export default class Map extends Component {
         <GeoJSONLayer
           data={this.props.data}
           fillPaint={{'fill-color': {property: 'impact', stops: impactStopsOrange}}}
+          linePaint={{'line-color': 'grey'}}
           fillOnClick={this.handleOnClick}
         >
         </GeoJSONLayer>
