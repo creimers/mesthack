@@ -4,6 +4,7 @@ import { data } from './data/parcelen.js'
 
 import CellDetails from './components/CellDetails'
 import Chart from './components/Chart'
+import LocationInput from './components/LocationInput'
 import Map from './components/Map'
 import Sliders from './components/Slider'
 
@@ -97,6 +98,7 @@ class App extends Component {
         </div>
         <div style={mapStyles}>
           <div style={{flex: 3}}>
+            <LocationInput value={'Nigtevecht'} />
             <Map
               manureValue={this.state.manureValue}
               precipitationValue={this.state.precipitationValue}
