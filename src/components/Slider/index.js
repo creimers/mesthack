@@ -33,6 +33,15 @@ export default class Sidebar extends Component {
           onChange={this.onSliderChange('precipitationValue')}
         />
 
+        <h3>gebruikte data</h3>
+        <ul>
+          <li>bodemgegevens Eurofins</li>
+          <li>weergegevens KNMI</li>
+          <li>waterkwaliteitsgegevens waterschap</li>
+          <li>mestgegevens KringloopWijzer</li>
+          <li>bedrijfsinformatie GDI</li>
+        </ul>
+
       </div>
     )
   }
