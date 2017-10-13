@@ -68,12 +68,6 @@ class App extends Component {
     this.setState({activeCell: null})
   }
 
-  renderActiveCell = () => {
-    if (this.state.activeCell) {
-      return <CellDetails cell={this.state.activeCell} onClose={this.resetActiveCell}/>
-    }
-  }
-
   setActiveCell = (cell) => {
     this.setState({activeCell: cell})
   }
@@ -92,8 +86,8 @@ class App extends Component {
               handleSliderChange={this.onSliderChange}
             />
           </div>
-          <div style={{flex: 1, display: 'flex'}}>
-            {this.renderActiveCell()}
+          <div style={{flex: this.state.activeCell ? 1 : 0, display: 'flex', transition: 'all 0.5s ease'}}>
+            <CellDetails cell={this.state.activeCell || {}} onClose={this.resetActiveCell}/>
           </div>
         </div>
         <div style={mapStyles}>
