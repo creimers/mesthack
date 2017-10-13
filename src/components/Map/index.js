@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import ReactMapboxGl, { GeoJSONLayer } from "react-mapbox-gl";
+import ReactMapboxGl, { GeoJSONLayer, Layer, Feature } from "react-mapbox-gl";
 
 const token = 'pk.eyJ1IjoiY3JlaW1lcnMiLCJhIjoiY2o4b2d3ZHNxMDJiczMycDYzdXgyaHNnYiJ9.lv43SVuUini5Qm6cCLpfJw'
 
@@ -60,6 +60,16 @@ export default class Map extends Component {
           fillOnClick={this.handleOnClick}
         >
         </GeoJSONLayer>
+
+        <Layer
+          type="circle"
+          paint={{
+            'circle-radius': 15,
+            'circle-color': '#000',
+          }}
+        >
+          <Feature coordinates={[5.0189803, 52.27169]}/>
+        </Layer>
       </MapboxMap>
     )
   }

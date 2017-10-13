@@ -25,17 +25,17 @@ export default (props) => (
     </div>
 
     <div style={rowStyles}>
-      <span>Soil</span>
+      <span>Bodem</span>
       <span>{props.cell.bt_klasse1}</span>
     </div>
 
     <div style={rowStyles}>
-      <span>Crop</span>
+      <span>Gewas</span>
       <span>{props.cell.la_gewas}</span>
     </div>
 
     <div style={rowStyles}>
-      <span>impact</span>
+      <span>Impact</span>
       <span>{props.cell.impact > 0 ? props.cell.impact : '< 0.1'}</span>
     </div>
 

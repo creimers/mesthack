@@ -18,7 +18,7 @@ export default class Sidebar extends Component {
       <div style={wrappingStyles}>
 
         <InputRange
-          name={'Manure'}
+          name={'Mest'}
           min="1"
           max="250"
           value={this.props.manureValue}
@@ -26,7 +26,7 @@ export default class Sidebar extends Component {
         />
 
         <InputRange
-          name={'Precipitation'}
+          name={'Neerslag'}
           min="1"
           max="100"
           value={this.props.precipitationValue}
