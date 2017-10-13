@@ -24,6 +24,19 @@ const impactStops = [
   [1.0, '#d50000']
 ]
 
+const impactStopsOrange = [
+  [0.0, '#FFF3E0'],
+  [0.1, '#FFE0B2'],
+  [0.2, '#FFCC80'],
+  [0.3, '#FFB74D'],
+  [0.4, '#FFA726'],
+  [0.5, '#FF9800'],
+  [0.6, '#FB8C00'],
+  [0.7, '#F57C00'],
+  [0.8, '#EF6C00'],
+  [0.9, '#E65100'],
+  [1.0, '#BF360C']
+]
 
 export default class Map extends Component {
 
@@ -56,7 +69,7 @@ export default class Map extends Component {
       >
         <GeoJSONLayer
           data={this.props.data}
-          fillPaint={{'fill-color': {property: 'impact', stops: impactStops}}}
+          fillPaint={{'fill-color': {property: 'impact', stops: impactStopsOrange}}}
           fillOnClick={this.handleOnClick}
         >
         </GeoJSONLayer>
