@@ -16,7 +16,8 @@ const appStyles = {
 const sidebarStyles = {
   flex: 1,
   flexDirection: 'column',
-  display: 'flex'
+  display: 'flex',
+  background: '#f7f7f7'
 }
 
 const mapStyles = {
@@ -41,7 +42,8 @@ const calculateImpact = (manure, prec, cell) => {
     morf = 0.1
   }
 
-  cell.properties.impact = prec * manure * soil * crop * pal * morf * 100 / 18000 
+  const impact = prec * manure * soil * crop * pal * morf * 100 / 18000 
+  cell.properties.impact = Math.floor(impact * 10) / 10
 
   return cell
 }

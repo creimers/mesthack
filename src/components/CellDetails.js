@@ -7,19 +7,37 @@ const wrappingStyles = {
   borderTop: '1px solid black'
 }
 
+const rowStyles = {
+  display: 'flex',
+  justifyContent: 'space-between',
+  marginBottom: '10px'
+}
+
 export default (props) => (
   <div style={wrappingStyles}>
-    <div style={{display: 'flex', justifyContent: 'flex-end'}}>
+    <div style={{display: 'flex', justifyContent: 'flex-end', marginBottom: '15px'}}>
       <button onClick={props.onClose}>close</button>
     </div>
-    <div>
-      ID: {props.cell.perc_id}
+
+    <div style={rowStyles}>
+      <span>ID</span>
+      <span>{props.cell.perc_id}</span>
     </div>
-    <div>
-      Soil: {props.cell.bt_klasse1}
+
+    <div style={rowStyles}>
+      <span>Soil</span>
+      <span>{props.cell.bt_klasse1}</span>
     </div>
-    <div>
-      Crop: {props.cell.la_gewas}
+
+    <div style={rowStyles}>
+      <span>Crop</span>
+      <span>{props.cell.la_gewas}</span>
     </div>
+
+    <div style={rowStyles}>
+      <span>impact</span>
+      <span>{props.cell.impact > 0 ? props.cell.impact : '< 0.1'}</span>
+    </div>
+
   </div>
 )
