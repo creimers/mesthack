@@ -35,6 +35,11 @@ const wrappingStyles = {
 
 
 class Chart extends Component {
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextProps.manureValue !== this.props.manureValue
+  }
+
   render() {
     const data = calculateLines(this.props.manureValue)
     return (
