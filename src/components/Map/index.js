@@ -28,8 +28,8 @@ const impactStops = [
 export default class Map extends Component {
 
   state = {
-    center: [5.00715, 52.27266],
-    zoom: [14]
+    center: [5.0404, 52.2698],
+    zoom: [13]
   }
 
   handleOnClick = (fill) => {

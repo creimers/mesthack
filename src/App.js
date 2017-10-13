@@ -55,8 +55,8 @@ const calculateDataWithImpact = (manure, prec) => {
 
 class App extends Component {
   state = {
-    manureValue: 1,
-    precipitationValue: 1,
+    manureValue: 15,
+    precipitationValue: 5,
     activeCell: null
   }
 
